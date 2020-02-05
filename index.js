@@ -4,21 +4,29 @@ const fi = (function() {
       return 'Start by reading https://medium.com/javascript-scene/master-the-javascript-interview-what-is-functional-programming-7f218c68b3a0'
     },
 
-    each: function(collection, alert) {
+    each: function(collection, callback) {
       if (Array.isArray(collection)){
-        collection.forEach(num => alert(num))
+        for(let i= 0; i < collection.length; i++){
+          callback(collection[i])
+        }
       }
       else {
-       Object.values(collection).forEach(value => alert(value))
-      }
+      let valuesArray = Object.values(collection)
+        for(let i= 0; i < valuesArray.length; i++){
+          callback(valuesArray[i])
+        }
       return collection
+      }
     },
 
     map: function(collection, cbFunct) {
       if (!Array.isArray(collection)){
         collection = Object.values(collection)
       };
-      let newCollection = collection.map(num => cbFunct(num))
+      let newCollection = []
+      for(let i=0; i < collection.length; i++){
+        newCollection.push(cbFunct(collection[i]))
+      }
       return newCollection
     },
 
@@ -35,7 +43,65 @@ const fi = (function() {
       return acc
     },
 
-    functions: function() {
+   find: function(collection, predicate){
+    for(let i = 0; i < collection.length; i++){
+      if (predicate(collection[i])){
+        return collection[i]
+      }
+    }
+    return undefined
+   },
+   
+   filter: function(collection, predicate){
+    let newArray = []
+    for(let i = 0; i < collection.length; i++)
+      if (predicate(collection[i]))
+        newArray.push(collection[i])
+        return newArray
+   },
+
+   size: function(collection){
+     return Object.values(collection).length
+   },
+
+  first: function(array, n){
+    if (n > 0){
+      return array.slice(0, n)
+    }
+      return array[0]
+  },
+
+  last: function(array, n){
+    
+  },
+
+  compact: function(array){
+
+  },
+
+  sortBy: function(array, callback){
+
+  },
+
+  flatten: function(array, [shallow]){
+
+  },
+
+  uniq: function(array, [isSorted], [callback]){
+
+  },
+
+  keys: function(object){
+
+  },
+
+  values: function(object){
+
+  },
+
+
+
+functions: function(object) {
 
     },
 
